@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:todoey/model/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+  List<Task> taskList;
+  String? newTask;
+  final Function(String?) addNewTask;
+
+  AddTaskScreen(this.taskList, this.addNewTask);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,9 @@ class AddTaskScreen extends StatelessWidget {
                 color: Colors.lightBlueAccent),
           ),
           TextField(
+            onChanged: ((value) {
+              newTask = value;
+            }),
             autofocus: true,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
@@ -33,7 +41,9 @@ class AddTaskScreen extends StatelessWidget {
             height: 20,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: (() {
+              addNewTask(newTask);
+            }),
             style: TextButton.styleFrom(
               primary: Colors.blue,
               backgroundColor: Colors.lightBlueAccent, // Background Color
