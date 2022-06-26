@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/model/task.dart';
+import 'package:todoey/model/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 
@@ -22,13 +24,6 @@ class _TasksScreenState extends State<TasksScreen> {
     Task(taskName: "one more"),
     Task(taskName: "Another more"),
   ];
-
-  void addNewTask(String? taskName) {
-    setState(() {
-      taskList.add(Task(taskName: taskName ?? ""));
-    });
-    print(taskName);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +45,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       child: Container(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen(taskList, addNewTask),
+                    child: AddTaskScreen(),
                   )));
         },
       ),
@@ -74,7 +69,7 @@ class _TasksScreenState extends State<TasksScreen> {
                             fontSize: 50.0,
                             fontWeight: FontWeight.bold)),
                     // SizedBox(height: 10.0),
-                    Text('12 Tasks',
+                    Text('${Provider.of<TaskData>(context).taskLength} tasks',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
@@ -90,7 +85,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
-                child: TaskList(taskList),
+                child: TaskList(),
               ),
             )
           ],

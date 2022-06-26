@@ -3,14 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/model/task.dart';
+import 'package:todoey/model/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  List<Task> taskList;
   String? newTask;
-  final Function(String?) addNewTask;
-
-  AddTaskScreen(this.taskList, this.addNewTask);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,8 @@ class AddTaskScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: (() {
-              addNewTask(newTask);
+              Provider.of<TaskData>(context, listen: false).addNewTask(newTask);
+              Navigator.pop(context);
             }),
             style: TextButton.styleFrom(
               primary: Colors.blue,
