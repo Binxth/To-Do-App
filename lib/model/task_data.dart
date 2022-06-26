@@ -17,12 +17,17 @@ class TaskData extends ChangeNotifier {
     return _taskList.length;
   }
 
-  UnmodifiableListView<TaskData> get tasks {
-    return _taskList;
+  UnmodifiableListView<Task> get tasks {
+    return UnmodifiableListView(_taskList);
   }
 
   void addNewTask(String? taskName) {
     _taskList.add(Task(taskName: taskName ?? ""));
+    notifyListeners();
+  }
+
+  void toggleCheckBox(Task task) {
+    task.updateTaskStatus();
     notifyListeners();
   }
 }

@@ -9,14 +9,7 @@ import 'package:todoey/model/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   List<Task> taskList = [
     Task(taskName: "Hello"),
     Task(taskName: "Need to get coffee"),
