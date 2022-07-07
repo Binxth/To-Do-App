@@ -11,43 +11,52 @@ import 'package:todoey/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   List<Task> taskList = [
-    Task(taskName: "Hello"),
+    Task(taskName: "Need to get Sugar"),
     Task(taskName: "Need to get coffee"),
-    Task(taskName: "Random task"),
-    Task(taskName: "one more"),
-    Task(taskName: "Another more"),
+    Task(taskName: "Go to the Gym"),
+    Task(taskName: "Call Mom"),
+    Task(taskName: "Water the plants"),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(15.0),
+    return Container(
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: [
+          Color(0xFF0061ff),
+          Color(0xFF60efff),
+        ],
+      )),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(15.0),
+                  ),
                 ),
-              ),
-              builder: (context) => SingleChildScrollView(
-                      child: Container(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen(),
-                  )));
-        },
-      ),
-      body: SafeArea(
-        child: Column(
+                builder: (context) => SingleChildScrollView(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTaskScreen(),
+                    )));
+          },
+        ),
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 30.0, top: 30.0),
+              padding: const EdgeInsets.only(left: 30.0, top: 80.0),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -55,11 +64,11 @@ class TasksScreen extends StatelessWidget {
                       child: Icon(Icons.list),
                       backgroundColor: Colors.white,
                     ),
-                    SizedBox(height: 10.0),
-                    Text('Todoey',
+                    SizedBox(height: 20.0),
+                    Text('To-Do List',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 50.0,
+                            fontSize: 40.0,
                             fontWeight: FontWeight.bold)),
                     // SizedBox(height: 10.0),
                     Text('${Provider.of<TaskData>(context).taskLength} tasks',
@@ -67,6 +76,7 @@ class TasksScreen extends StatelessWidget {
                           color: Colors.white,
                           fontSize: 18.0,
                         )),
+                    SizedBox(height: 30.0),
                   ]),
             ),
             Expanded(
